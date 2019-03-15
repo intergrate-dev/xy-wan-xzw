@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件订阅</title>
+    <script type="text/javascript" src="./resources/scripts/jquery.min.js"></script>
+</head>
+<style>
+    html,body{
+        margin:0px;
+        padding:0px;
+        height:100%;
+        width:100%;
+    }
+    body{
+        background:url(./resources/image/sys-login-body-bg-2.jpg) no-repeat left top;
+        background-size:cover;
+    }
+    .container{
+        width:300px;
+        height:500px;
+        position: absolute;
+        top:50%;
+        left:50%;
+        /*text-align: center;*/
+        margin-top:-150px;
+        margin-left:-180px;
+    }
+    .userForm .userName,.userEamil{
+        position: relative;
+    }
+    .user-name,.user-eamil{
+        width:220px;
+        height:20px;
+        position:relative;
+
+    }
+    .btn{
+        border:none;
+        outline:none;
+        background:#46A3FF;
+        width:220px;
+        height:25px;
+        margin-top:30px;
+        color:#fff;
+    }
+</style>
+<body>
+<div class="container">
+    <div class="forms">
+   <form action="" method="post" class="userForm">
+    <p class="userName">
+        Name
+    </p>
+       <input type="text" name="userName" placeholder="zhangsan" class="user-name">
+       <p class="userEamil">
+           Eamil
+       </p>
+       <input type="text" name="userEamil" placeholder="zhangsan@founder.com" class="user-eamil"><br>
+       <input type="button" name="submitInfo" value="Subscibe" class="btn" onclick="sendInfo()">
+   </form>
+    </div>
+</div>
+<script>
+    function sendInfo(){
+        var name= $.trim($(".user-name").val());
+        var email=$.trim($(".user-eamil").val());
+        if(name.length==0){
+            alert("用户名不能为空");
+            return;
+        }
+        if (email.length == 0) {
+            alert("邮箱不能为空!");
+            return;
+        }
+        var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        if (!myreg.test(email)) {
+            alert('请输入有效的E-mail!');
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url:"../../../app_if/emailSubscribe",
+            dataType: "json",
+            data:{
+                name:$(".user-name").val(),
+                email:$(".user-eamil").val()
+            },
+
+            success:function(data){
+                if(data.success){
+                    alert("提交成功");
+                }else{
+                    alert(data.errorInfo);
+                }
+            }
+
+
+        });
+    }
+</script>
+</body>
+</html>

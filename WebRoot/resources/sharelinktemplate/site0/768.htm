@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<base href="${basePath}">
+
+		<title></title>
+
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+
+		<style>
+			body
+			{
+				margin:0px auto;
+				width: 768px;
+				padding: 0;
+				height: 100%;
+				background: rgb(ff, ff, ff);
+				font-family: verdana, tahoma, georgia, Lucida Grande, Lucida Sans Regular, Lucida Sans Unicode, Arial, sans-serif;
+				font-size: 14px;
+				background-color:rgb(247, 248, 248)
+			}
+			
+			img
+			{
+				border: none;	
+			}
+			
+			a
+			{
+				color: #0066CC;	
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+			a:hover
+			{
+				color: #000000;	
+				text-decoration: underline;
+			}
+		</style>
+		<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script-->
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+		<script src="resources/scripts/template.datasource.js"></script>
+		<script>
+		//评论服务器地址
+		var comment_if="${comment_if}";
+
+		//每次获取评论的数量
+		var commentPageSize = 10;
+
+		$(document).ready(function()
+		{
+			//$("div[class=layout]").css("border", "1px solid black").css("width", "768px");
+
+			$.ajaxSetup({ cache: false });
+			//取稿件
+			$.getJSON("getArticleContent?articleId=" + articleId, showArticle);
+		});
+		</script>
+
+	</head>
+
+	<body>
+		<div id="header" class="layout" style="display:none;">
+		<p>
+			768.头部
+		</p>
+		</div>
+		<div id="content" class="layout">
+			<div id="article" class="layout">
+				<div id="articleSubtitle" style="color:#000066; padding-left:17px; font-size:14px; margin:0px 0; line-height:20px; text-align:center;"></div>
+				<div id="articleTitle" style="padding-left:17px; font-size:30px; margin:0px 0; line-height:60px; text-align:center;"></div>
+				<div id="articlePublishtime" style="font-size:12px; color:#999999;	padding:5px 0 8px 14px;	border-bottom:solid 1px #e6e6e6;text-align:center;"></div>
+				<div id="articleAttAbstract" style="font-size:12px; color:#999999; margin:20px 0px 0px 0px;"></div>
+				<p></p>
+				<div id="articleSource" style="display:none;"></div>
+				<div id="articleAuthor" style="display:none;"></div>
+				<div id="articleEditor" style="display:none;"></div>
+				<div id="articleIntrotitle" style="display:none;"></div>
+				<div id="articleContent" style="font-size:18px; padding:18px 10px 5px 10px; line-height:30px; text-indent:1em;"></div>
+				<div id="articleImageTemplate" style="display:none;">
+					<div style="text-align:center;"/>
+						<img id="articleImg" src="" style="border:1px solid black"/>
+						<div id="articleImgAbstract"></div>
+					</div>
+				</div>
+				<div id="articleVideoTemplate" style="display:none;">
+					<div style="text-align:center;"/>
+						<a id="articleVideoHref" href="" target="_blank"><img id="articleVideoImg" src="" style="border:1px solid black"/></a>
+						<div id="articleVideoAbstract"></div>
+					</div>
+				</div>
+			</div>
+			<div id="comment" class="layout" style="display:none;">
+				<div style="color: #ccc; padding-left: 10px; font-size: 18px; font-weight: bold; background-color: rgb(102, 102, 102);">评论</div>
+				<div style="margin:10px 0px 0px 0px;"></div>
+				<div id="commentTemplate" style="display:none; margin:20px 0px 0px 0px;">
+					<div style="float: left;">作者:</div><div id="user" style="color:#666666; font-size:14px; width:200px; float: left;"></div>
+					<div style="margin:0px 0px 0px 20px; float: left;">发布时间:</div><div id="commentTime" style="color:#666666; font-size:14px; float: left;"></div>
+					<div id="content" style="font-size:14px; color:#ccc; border-bottom:#C9DAE6 1px solid; padding:10px 0px 10px 0px; clear:both;"></div>
+				</div>
+				<div style="text-align:center;"><a id="moreTopComment" style="display:none; text-align:center;" href="">更多评论</a></div>
+				<div id="postComment" style="margin:20px 0px 0px 0px;">
+					<form name="commentform" id="commentform" action="" method="post">
+					<div style="float: left;">
+						昵称:
+					</div>
+					<div style="float: left;">
+						<input type="text" name="userName" id="userName" style="width: 100px; height: 15px; color: #999999; line-height: normal; font-family: "宋体"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; font-size-adjust: none; font-stretch: normal;" value="方正报社"/>
+					</div>
+					<div style="clear:both; margin:0px 0px 0px 0px;">
+						<textarea name="commentInfo" id="commentInfo" style="margin:15px 0px 15px 0px; width: 768px; height: 220px; line-height: normal; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; font-family: "宋体"; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; font-size-adjust: none; font-stretch: normal;" rows="5"></textarea>
+					</div>
+					<div>
+						<input type="button" value="发表评论" id="submitComment"/>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="footer" class="layout" style="display:none;">
+			<p>
+				Copyright &copy; 2000-2010 Your Company. All Rights Reserved.
+			</p>
+		</div>
+	</body>
+</html>
+

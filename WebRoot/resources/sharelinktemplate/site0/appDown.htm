@@ -1,0 +1,607 @@
+<!DOCTYPE HTML>
+<HTML lang="en-US">
+	<HEAD>
+		<base href="${basePath}">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<title>应用下载</title>
+		<style>
+/**
+ * Global Centered styles
+ */
+::selection {
+	background: #fbc912;
+	color: #ffffff;
+}
+
+::-moz-selection {
+	background: #fbc912;
+	color: #ffffff;
+}
+
+body,html {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background: #f1f0ee;
+	color: #000000;
+	font-family: "Apercu Regular", Calibri, sans-serif;
+	font-size-adjust: 0.508;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1em;
+	line-height: 1.5em;
+	word-wrap: break-word;
+	-webkit-font-smoothing: antialiased !important;
+	-webkit-text-size-adjust: none;
+	-webkit-text-stroke: 1px transparent;
+	text-rendering: optimizeLegibility;
+}
+
+/** ABOUT **/
+a {
+	color: #999;
+	-webkit-transition: color 0.2s linear;
+	-moz-transition: color 0.2s linear;
+	-o-transition: color 0.2s linear;
+}
+
+a:hover {
+	color: #F36;
+}
+
+/*
+ * Header / Navigation
+ */
+#header_content {
+	height: 60px;
+	z-index: 10;
+	font-family: "Apercu Regular", Calibri, sans-serif;
+	font-size-adjust: 0.508;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 1em;
+	letter-spacing: 0.1em;
+}
+
+.header_img {
+	background:
+		url(http://payload131.cargocollective.com/1/3/125722/4926885/gid-arrow.gif)
+		no-repeat center 80px;
+	padding: 20px;
+	text-align: center;
+	z-index: 10;
+}
+
+.header_img img {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	margin: 60px 0;
+}
+
+.nav_container {
+	text-align: center;
+	padding: 20px 0;
+	background: rgba(255, 255, 255, 0.97);
+	border-bottom: 1px solid #CCC;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	z-index: 10;
+}
+.nav_container {
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    position:fixed;
+    width: 100%;
+    top: 0px;
+    z-index:10;
+    
+}
+
+.nav_container div {
+    display: inline-block;
+    
+} 
+
+#nav_loadspin {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 49%;
+    z-index: 100;
+}
+/*
+ * Content
+ */
+#page_1 {
+	margin-top: 75px;
+	max-width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 40px;
+}
+
+#content_container {
+	clear: both;
+	padding: 80px 0 0 0;
+	position: relative;
+	text-align: center;
+	z-index: 9;
+}
+
+#maincontainer {
+	display: none;
+	padding: 0 40px;
+	margin: 0 auto;
+	max-width: 1300px;
+}
+
+/*
+ * Thumbnails
+ */
+.project_thumb {
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	vertical-align: top;
+	width: 100%;
+	height: 190px;
+	margin-bottom: 25px;
+}
+
+.project_thumb .hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.project_thumb .nohover {
+	text-decoration: none;
+}
+
+.project_thumb .hover .cardimgcrop {
+	
+}
+
+.project_thumb.active .cardimgcrop {
+	
+}
+
+.project_thumb .hover .thumb_title span,.project_thumb.active .thumb_title span
+	{
+	
+}
+
+/** TEMPORARY **/
+.cardimgcrop img {
+	display: none;
+}
+
+.cardimgcrop.notitle_notag {
+	margin-bottom: 22px;
+}
+
+.loader_holder {
+	display: none !important;
+	position: absolute;
+	text-align: center;
+	top: 8px;
+	left: 8px;
+	z-index: -3;
+}
+
+.thumb_title {
+	white-space: nowrap;
+	text-align: center;
+	width: 100%;
+	top: -125px;
+	position: relative;
+}
+
+.thumb_title.notag {
+	margin-bottom: -120px;
+}
+
+.thumb_title .text {
+	border: 4px solid rgba(56, 64, 113, 0);
+	background: #384071;
+	color: #FFFFFF;
+	font-family: "Apercu Bold", Calibri, sans-serif;
+	font-size-adjust: 0.508;
+	font-weight: bold;
+	font-style: normal;
+	letter-spacing: 0.1em;
+	font-size: 2.5em;
+	white-space: nowrap;
+	text-align: center;
+	display: block;
+	padding: 80px 40px;
+	-moz-box-shadow: 6px 6px 0px 0px rgba(206, 206, 206, 1);
+	-webkit-box-shadow: 6px 6px 0px 0px rgba(206, 206, 206, 1);
+	box-shadow: 6px 6px 0px 0px rgba(206, 206, 206, 1);
+	-webkit-transition: all 0.1s cubic-bezier(0, 0, 0.25, 1);
+	-moz-transition: all 0.1s cubic-bezier(0, 0, 0.25, 1);
+	-o-transition: all 0.1s cubic-bezier(0, 0, 0.25, 1);
+	-ms-transition: all 0.1s linear;
+	transition: all 0.1s cubic-bezier(0, 0, 0.25, 1);
+}
+
+/** COLORS **/
+#item_iphone .thumb_title .text {
+	background: #ff6861;
+}
+
+#item_android .thumb_title .text {
+	background: #00a68d;
+}
+
+#item_3632495 .thumb_title .text {
+	background: #d04a63;
+}
+
+#item_3131922 .thumb_title .text {
+	background: #4ac8d0;
+}
+
+#item_ipad .thumb_title .text {
+	background: #4ac8d0;
+}
+
+#item_1847133 .thumb_title .text {
+	background: #8497dc;
+}
+
+#item_1651652 .thumb_title .text {
+	background: #3873cd;
+}
+
+#item_1896383 .thumb_title .text {
+	background: #66ceb5;
+}
+
+#item_1898076 .thumb_title .text {
+	background: #ea75a0;
+}
+
+#item_1808987 .thumb_title .text {
+	background: #dad832;
+}
+
+.thumb_title .text:hover {
+	color: #384071;
+	border: 4px solid rgba(56, 64, 113, 1);
+	background: #FFFFFF;
+	margin: 6px 0 0 6px;
+	-moz-box-shadow: 0px 0px 0px 0px rgba(51, 51, 50, .5);
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(51, 51, 50, .5);
+	box-shadow: 0px 0px 0px 0px rgba(51, 51, 50, .5);
+}
+
+#item_iphone .thumb_title .text:hover {
+	border: 4px solid #ff6861;
+	background: #FFFFFF;
+	color: #ff6861;
+}
+
+#item_android{
+	display:none;
+}
+#item_iphone{
+	display:none;
+}
+#item_ipad{
+	display:none;
+}
+#item_android .thumb_title .text:hover {
+	border: 4px solid #00a68d;
+	background: #FFFFFF;
+	color: #00a68d;
+}
+
+#item_3632495 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #d04a63;
+	color: #d04a63;
+}
+
+#item_3131922 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #4ac8d0;
+	color: #4ac8d0;
+}
+
+#item_ipad .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #4ac8d0;
+	color: #4ac8d0;
+}
+
+#item_1847133 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #8497dc;
+	color: #8497dc;
+}
+
+#item_1651652 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #3873cd;
+	color: #3873cd;
+}
+
+#item_1896383 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #66ceb5;
+	color: #66ceb5;
+}
+
+#item_1898076 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #ea75a0;
+	color: #ea75a0;
+}
+
+#item_1808987 .thumb_title .text:hover {
+	background: #FFFFFF;
+	border: 4px solid #dad832;
+	color: #dad832;
+}
+
+.thumb_title .text:active {
+	color: #999999;
+}
+
+.thumb_tag {
+	color: #999999;
+	font-family: Menlo, monaco, monospace;
+	font-size: 11px;
+	margin: 0 0 2px 0;
+	overflow: hidden;
+	text-align: center;
+	width: 280px;
+}
+
+.thumb_tag.notitle {
+	margin-top: 5px;
+}
+
+.thumb_tag a {
+	color: #999999;
+	text-align: center;
+	text-decoration: none;
+}
+
+.thumb_tag a:hover {
+	text-decoration: underline;
+}
+
+.excerpt {
+	color: #000;
+	font-family: Arial, sans-serif;
+	line-height: 16px;
+	font-size: 12px;
+	overflow: hidden;
+	margin-top: 15px;
+	width: 280px;
+}
+</style>
+
+
+		<style>
+[touch-action="none"] {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+[touch-action="pan-x"] {
+	-ms-touch-action: pan-x;
+	touch-action: pan-x;
+}
+
+[touch-action="pan-y"] {
+	-ms-touch-action: pan-y;
+	touch-action: pan-y;
+}
+
+[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]
+	{
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+}
+</style>
+
+		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+		<script src="resources/scripts/download.datasource.js"></script>
+		<script>
+			
+			$(document).ready(function()
+			{
+			//$("div[class=layout]").css("border", "1px solid black").css("width", "768px");
+
+			$.ajaxSetup({ cache: false });
+			
+			//取稿件
+			$.getJSON("getAppdownUrlList?customerId=" + customerId, showDownload);
+			//
+			});
+		</script>
+	</head>
+
+	<body>
+
+
+		<div id="header_container">
+			<div id="header_content">
+				
+				<!-- <div class="header_img">
+					<a href="#"
+                    onfocus="this.blur()">
+                    <img src="resources/image/transparent.gif"
+                        height="156" width="400"></a>
+				</div>
+				<img src="resources/image/loadingAnim.gif" id="nav_loadspin"> -->
+				<div class="nav_container horizontal">
+
+				</div>
+			</div>
+		</div>
+		<div id="content_container">
+
+			<div id="page_1" style="display: block;">
+				<!--<div class="project_thumb" id="item_4926766">
+                    <div id="pr_contain_item_4926766">
+                        <a href="#"  class="nohover" id="p4926766"
+                        rel="history" >
+                           
+                            <div class="thumb_title notag">
+                                <span class="text">
+                                    Lancôme
+                                </span>
+                                &nbsp;
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="project_thumb" id="item_3632495" >
+                    <div id="pr_contain_item_3632495">
+                        <a href="#"  class="nohover" id="p3632495"
+                        rel="history" >
+                            <div class="thumb_title notag">
+                                <span class="text">
+                                    L'Oréal LMFF
+                                </span>
+                                &nbsp;
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				-->
+				<div class="project_thumb" id="item_android">
+					<div id="pr_contain_item_android">
+						<a href="#" class="nohover" id="android" rel="history"
+							title="安卓新闻客户端">
+							<div class="thumb_title notag">
+								<span class="text"> Android </span> &nbsp;
+							</div> </a>
+					</div>
+				</div>
+				<div class="project_thumb" id="item_iphone">
+					<div id="pr_contain_item_iphone">
+						<a href="#" class="nohover" id="iphone" rel="history"
+							title="iphone版新闻客户端">
+
+							<div class="thumb_title notag">
+								<span class="text"> iPhone </span> &nbsp;
+							</div> </a>
+					</div>
+				</div>
+				<div class="project_thumb" id="item_ipad">
+					<div id="pr_contain_item_ipad">
+						<a href="#" class="nohover" id="ipad" rel="history"
+							title="ipad新闻客户端">
+
+							<div class="thumb_title notag">
+								<span class="text"> iPad </span> &nbsp;
+							</div> </a>
+					</div>
+				</div>
+				<!--
+                <div class="project_thumb" id="item_1898076" name="1898076" page="1" spot="-1">
+                    <div id="pr_contain_item_1898076">
+                        <a href="http://www.gidmotion.com/L-Oreal-Shine-Caresse" onmouseover="this.className=&#39;hover&#39;;"
+                        onmouseout="this.className=&#39;nohover&#39;;" class="nohover" id="p1898076"
+                        rel="history" name="GID" onfocus="this.blur()">
+                            <div class="loader_holder " id="load_1898076">
+                                <img src="./Art Direction & Design by Gabriela Iglesias Dardon_files/loadingAnim.gif">
+                            </div>
+                            <div class="cardimgcrop " id="cardthumb_1898076" name="">
+                                <img src="./Art Direction & Design by Gabriela Iglesias Dardon_files/prt_1333456773.png"
+                                border="0" rel="testprt_1333456773.png">
+                            </div>
+                            <div class="thumb_title notag">
+                                <span class="text">
+                                    L'Oréal Shine Caresse
+                                </span>
+                                &nbsp;
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="project_thumb" id="item_1651652" name="1651652" page="1" spot="-1">
+                    <div id="pr_contain_item_1651652">
+                        <a href="http://www.gidmotion.com/Sidekicker" onmouseover="this.className=&#39;hover&#39;;"
+                        onmouseout="this.className=&#39;nohover&#39;;" class="nohover" id="p1651652"
+                        rel="history" name="GID" onfocus="this.blur()">
+                            <div class="loader_holder " id="load_1651652">
+                                <img src="./Art Direction & Design by Gabriela Iglesias Dardon_files/loadingAnim.gif">
+                            </div>
+                            <div class="cardimgcrop " id="cardthumb_1651652" name="">
+                                <img src="./Art Direction & Design by Gabriela Iglesias Dardon_files/prt_1333456259.png"
+                                border="0" rel="testprt_1333456259.png">
+                            </div>
+                            <div class="thumb_title notag">
+                                <span class="text">
+                                    Sidekicker
+                                </span>
+                                &nbsp;
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="project_thumb" id="item_1896383" name="1896383" page="1" spot="-1">
+                    <div id="pr_contain_item_1896383">
+                        <a href="http://www.gidmotion.com/Moduli" onmouseover="this.className=&#39;hover&#39;;"
+                        onmouseout="this.className=&#39;nohover&#39;;" class="nohover" id="p1896383"
+                        rel="history" name="GID" onfocus="this.blur()">
+                            <div class="loader_holder " id="load_1896383">
+                                <img src="./Art Direction & Design by Gabriela Iglesias Dardon_files/loadingAnim.gif">
+                            </div>
+                            <div class="cardimgcrop " id="cardthumb_1896383" name="">
+                                <img src="./Art Direction & Design by Gabriela Iglesias Dardon_files/prt_1333456614.png"
+                                border="0" rel="testprt_1333456614.png">
+                            </div>
+                            <div class="thumb_title notag">
+                                <span class="text">
+                                    Moduli
+                                </span>
+                                &nbsp;
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="project_thumb" id="item_1847133" >
+                    <div id="pr_contain_item_1847133">
+                        <a href="#"  class="nohover" id="p1847133"
+                        rel="history" >
+                            
+                            <div class="thumb_title notag">
+                                <span class="text">
+                                    Chapstick
+                                </span>
+                                &nbsp;
+                            </div>
+                        </a>
+                    </div>
+                </div>
+				-->
+				<div class="pagecontainer" id="item_1651653" name="1651653" page="0"
+					spot="9">
+				</div>
+			</div>
+			<br>
+		</div>
+		<div id="foot_container">
+
+		</div>
+
+	</body>
+
+</html>

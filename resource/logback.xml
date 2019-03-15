@@ -1,0 +1,44 @@
+<configuration scan="false">
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/weblog/xy-apiif.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/weblog/xy-apiif.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>
+				%date %level [%relative] [%thread] %class [%file : %line] %msg%n%xEx
+			</Pattern>
+		</encoder>
+	</appender>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>
+				%date %level [%relative] [%thread] %class [%file : %line] %msg%n%xEx
+			</Pattern>
+		</encoder>
+	</appender>
+	<appender name="PARAMCONFIGSTDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>
+				%date %level | %msg%n%xEx
+			</Pattern>
+		</encoder>
+	</appender>
+	<appender name="PARAMCONFIGFILE" class="ch.qos.logback.core.FileAppender">
+		<file>/weblog/xy-appif.paramConfig.log</file>
+		<encoder>
+			<Pattern>
+				%date %level | %msg%n%xEx
+			</Pattern>
+		</encoder>
+	</appender>
+	<logger name="com.founder.mobileinternet.cmsinterface.util.ParamConfigInjectSupport" level="INFO" additivity="false">
+		<appender-ref ref="PARAMCONFIGFILE"/>
+		<appender-ref ref="PARAMCONFIGSTDOUT" />
+	</logger>
+	<root level="ERROR">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

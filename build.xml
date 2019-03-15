@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="xy-wan" default="release" basedir=".">
+	<property name="debug" value="on" />
+	<property name="optimize" value="on" />
+	<property name="deprecation" value="on" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="classes.dir" value="${basedir}/bin" />
+
+	<property name="WEB.PATH" value="WebRoot" />
+	<property name="servlet.lib" value="${basedir}/nodeploylib" />
+	<property name="jar.name" value="xy5.0-wan.jar" />
+
+	<!-- =================================================================== -->
+	<!-- Clean the old classes -->
+	<!-- =================================================================== -->
+	<target name="clean">
+		<delete dir="${classes.dir}"/>
+		<!--
+		<delete>
+			<fileset dir="${classes.dir}">
+			</fileset>
+		</delete>
+		-->
+		<mkdir dir="${classes.dir}"/>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compiles the source directory -->
+	<!-- =================================================================== -->
+	<target name="compile.java" depends="clean">
+		<javac debug="${debug}" optimize="${optimize}" srcdir="${src.dir}" source="1.7"
+			destdir="${classes.dir}" encoding="UTF-8" includeantruntime="on">
+			<classpath id="class.path.dir">
+				<fileset dir="${WEB.PATH}/WEB-INF/lib">
+					<include name="*.jar" />
+					<exclude name="${jar.name}" />
+				</fileset>
+				<fileset dir="${servlet.lib}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the class package -->
+	<!-- =================================================================== -->
+	<target name="package" depends="compile.java">
+		<jar jarfile="${WEB.PATH}/WEB-INF/lib/${jar.name}">
+			<fileset dir="${classes.dir}">
+				<include name="**/*.class" />
+			</fileset>
+		</jar>
+		<copy todir="${WEB.PATH}/WEB-INF/classes">
+			<fileset dir="${basedir}/resource">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+	</target>
+	<!-- =================================================================== -->
+	<!-- OK.(Default work) -->
+	<!-- =================================================================== -->
+	<target name="release" depends="package">
+		<echo message="Build success completed!" />
+	</target>
+	
+	<!-- =================================================================== -->
+	<!-- Extra work: war. -->
+	<!-- =================================================================== -->
+	<target name="war" depends="release">
+		<war destfile="${basedir}/xyapi.war" webxml="${WEB.PATH}/WEB-INF/web.xml">
+			<fileset dir="${WEB.PATH}">
+				<include name="**/**.*"/>
+			</fileset>
+		</war>
+	</target>
+</project>
